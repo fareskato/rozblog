@@ -1,0 +1,29 @@
+#sales_table{
+    text-align: left;
+}
+#sales_table thead tr td{
+    font-size: 18px;
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+    background: #e14d43;
+    text-shadow: none;
+}
+#sales_table tbody tr th{
+    background: #fff;
+    font-size: 14px;
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+    font-weight: normal;
+    text-shadow: none;
+}
+#sales_table tbody tr th:hover{
+    background: #dddddd;
+}
+span.pager-button{
+    display: inline-block;
+    background: #e14d43;
+    padding: 5px 10px;
+    font-size: 18px;
+    margin-right: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,7 @@
+## FAQ
+
+### How can I schedule updates from http / ftp sources with basic auth login?
+Just add your username / password in the url: ftp://user:pass@server.com/update.csv
+
+### Why does is my stock or price template empty when I download them?
+Make sure that each product has a unique SKU. Sku stands for 'Stock Keeping Unit', and this property is necessary for keeping track of your products stock.

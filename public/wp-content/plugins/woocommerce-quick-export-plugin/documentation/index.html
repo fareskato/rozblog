@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>WooCommerce Quick Export Plugin</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">Plugin Documentation by &ldquo;MB Création&rdquo; v2.1.4</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;WooCommerce Quick Export Plugin&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 31/10/2013<br>
+					Updated: 23/02/2015<br>
+					By: Benoit Mercusot<br>
+					Email: <a href="mailto:support@mbcreation.net">support@mbcreation.net</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">
+					Thank you for purchasing WooCommerce Quick Export Plugin. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/mbcreation">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#about">About</a></li>
+			<li><a href="#installation">Installation</a></li>
+			<li><a href="#customers">Exporting Customers</a></li>
+			<li><a href="#orders">Exporting Orders</a></li>
+			<li><a href="#coupons">Exporting Coupons</a></li>
+			<li><a href="#scheduled">Scheduled orders export</a></li>
+			<li><a href="#storage">Data storage</a></li>
+			<li><a href="#ki">Known issues</a></li>
+			<li><a href="#nd">Note for developpers (hooks)</a></li>
+		</ol>
+		
+		<hr>
+		
+		<h3 id="about"><strong>A) About</strong> - <a href="#toc">top</a></h3>
+		<p>
+		
+		WooCommerce Quick Export Plugin gives you the ability to export into CSV file all your WooCommerce customers and  WooCommerceorders in one click. A great way to analyse more easily your store activity.
+		
+		</p>
+
+
+
+		<hr>
+
+		<h3 id="installation"><strong>B) Installation</strong> - <a href="#toc">top</a></h3>
+		<p>WooCommerce Quick Export Plugin requires WordPress 3.7+</p>
+		<p>WooCommerce Quick Export Plugin has been successfully tested with WooCommerce 2.0, 2.1, 2.2, 2.3.</p>
+		<p>Just like every plugins, just copy the woocommerce-quick-export-plugin folder in your wp-content/plugins	folder then activate it through WordPress dashboard. The plugin is only accessible for Admin's</p>
+		<p>If the installation went OK, you can now access the plugin Dashboard from the WooCommerce > Reports menu. </p>
+		
+		<figure>
+		  <img src="assets/images/menu-report.png" alt="Menu Location" />
+		  <figcaption>This is the way to WooCommerce Quick Export Plugin dashboard </figcaption>
+		</figure>
+	
+		<p>Once on the native WooCommerce Report dashboard you should see two new tabs named "Quick Export" and "Scheduled Export". Just click it.</p>
+
+		<figure>
+		  <img src="assets/images/quick-export-tab.png" alt="Quick Export tab" />
+		  <figcaption>The newly available "Quick Export" tab.</figcaption>
+		</figure>
+		
+		<figure>
+		  <img src="assets/images/automated-export-tab.png" alt="Scheduled Export tab" />
+		  <figcaption>The newly available "Scheduled Export" tab.</figcaption>
+		</figure>
+
+		<hr>
+
+		<h3 id="customers"><strong>C) Exporting Customers</strong> - <a href="#toc">top</a></h3>
+
+		<p>Exporting tools is the default operation you can do with WooCommerce Quick Export Plugin. It allows you to extract from your WooCommerce database all the "registered customers" you have.</p>
+
+		<p>Since date range is an optionnal filter you can make your first export right away. You will have all your customers with all their data in one big CSV file. You can try it by simply click on the blue "export" button.</p>
+			
+		<figure>
+		  <img src="assets/images/export-customers.png" alt="Customer Export Screen" />
+		  <figcaption>The customer Export Screen</figcaption>
+		</figure>
+
+		<h4><strong>Exporting Customers options</strong></h4>
+
+		<h5>a) user data</h5>
+		<p>There are four pre-configured sets of data when exporting customers. You need to select at least one. For each sets of data their are corresponding columns for your upcoming csv file. Here's the list :</p>
+		<ol>
+			<li>User identity will extract the following fields : <pre>user_registered, user_login, user_email</pre></li>
+			<li>Billing informations will extract the following fields : <pre>billing_first_name, billing_last_name, billing_company, billing_address_1,<br/>billing_address_2, billing_city, billing_postcode, billing_country,<br/>billing_state, billing_email, billing_phone</pre>
+			</li>
+			<li>Shipping informations will extract the following fields : <pre>shipping_first_name, shipping_last_name, shipping_company, shipping_address_1,<br/>shipping_address_2, shipping_city, shipping_postcode, shipping_country,<br/>shipping_state</pre></li>
+			<li>Sales statistics will compute and add to your csv file the following columns : <pre>nb_order<sup>*</sup>, amount_total<sup>**</sup></pre>
+			</li>
+		</ol>
+
+		<p>
+			<sup>*</sup>nb_order is total number of completed orders made by the customer.<br/>
+			<sup>**</sup>amount_total sums each completed orders made by the customer.  
+
+		</p>
+		
+		<h5>b) date range</h5>
+		<p>
+			If you want to export customers data only for a specific period of time, you can specify start and end date using the two dedicated field. To select the desired date just click on the field to popup the calendar and select one day. You can't select a day in the future. <em>You don't have to specify two dates.</em>
+		</p>
+
+		<p>
+			During customers export, <strong>the date filter filters the data based on registration date of users.</strong> Orders data concerning each customers will be selected within these two bounds. 
+		</p>
+
+
+		<hr>
+		
+		<h3 id="orders"><strong>D) Exporting Orders</strong> - <a href="#toc">top</a></h3>
+		
+		
+		<p>To export orders, you need to select the correct data type using the first form selector in the plugin dashboard.</p>
+
+		<p>Since date range is an optionnal filter you can make your first export right away. You will have all your orders with all their data in one big CSV file. You can try it by simply click on the blue "export" button.</p>
+
+		<figure>
+		  <img src="assets/images/export-orders.png" alt="Orders Export Screen" />
+		  <figcaption>The orders Export Screen</figcaption>
+		</figure>
+
+		<h4><strong>Exporting Orders options</strong></h4>
+
+		<h5>a) order status</h5>
+		<p>The plugin will automatically lists all available order status in your WooCommerce installation. Native status and optionnaly extra status developped by yourself or third-party plugins. Note that status without any order won't be displayed. <em>The number beside each status represents the actual number of orders stored in the database.</em>
+		
+		<p>You may choose if the products will be displayed on line or on column. If you choose to display on line, columns will be added to fit the maximum number of items for one order in the exported set. If you choose columns, a with the product informations will be added under the order infos for each order's product. </p>
+
+		<p>Almost every fields from each order will be available in the CSV files :</p>
+		
+		<pre>
+			//general
+			'id', 'status', 'order_date',
+			
+			//billing infos
+			'billing_first_name', 'billing_last_name', 
+			'billing_company', 'billing_address_1', 'billing_address_2','billing_city',  
+			'billing_postcode', 'billing_country', 'billing_state', 'billing_email', 
+			'billing_phone',
+			
+			//shipping infos
+			'shipping_first_name', 'shipping_last_name', 
+			'shipping_company', 'shipping_address_1', 'shipping_address_2', 
+			'shipping_city', 'shipping_postcode', 'shipping_state', 'shipping_country',
+			
+			//note
+			'customer_note', 
+			
+			//payment, shipping and total
+			'shipping_method_title', 'payment_method_title', 'order_discount', 
+			'cart_discount', 'order_tax', 'order_shipping', 'order_shipping_tax', 
+			'order_total', 'order_tax_detail', 'completed_date',
+			
+			//others
+			'number_of_different_items',
+			'total_number_of_items',
+			'used_coupons',
+			'coupon_name',
+			'coupon_discount'
+		</pre>
+		
+		<h5>b) date range</h5>
+		<p>
+			If you want to export orders data only for a specific period of time, you can specify start and end date using the two dedicated field. To select the desired date just click on the field to popup the calendar and select one day. You can't select a day in the future. <em>You don't have to specify two dates.</em>
+		</p>
+
+		
+		<hr>
+		<h3 id="coupons"><strong>E) Exporting Coupon usage</strong> - <a href="#toc">top</a></h3>
+		
+		<p>To export coupons usage, you need to select the correct data type using the first form selector in the plugin dashboard.</p>
+
+		<p>Since date range is an optionnal filter you can make your first export right away. You will have all your orders with all their data in one big CSV file. You can try it by simply click on the blue "export" button.</p>
+
+		<figure>
+		  <img src="assets/images/export-coupons.png" alt="Coupons Export Screen" />
+		  <figcaption>The coupons Export Screen</figcaption>
+		</figure>
+		
+		<h4><strong>Exporting Coupons options</strong></h4>
+
+		<h5>a) exported fields</h5>
+		
+		<p>Here are the exported fields :</p>
+		
+		<ul>
+			<li>Order id</li>
+			<li>Order date</li>
+			<li>Number of used coupons</li>
+		</ul>
+		
+		<p>And for each used coupons :</p>
+		
+		<ul>
+			<li>Coupon name</li>
+			<li>Discount</li>
+		</ul>
+		
+		<h5>b) date range</h5>
+		<p>
+			If you want to export orders data only for a specific period of time, you can specify start and end date using the two dedicated field. To select the desired date just click on the field to popup the calendar and select one day. You can't select a day in the future. <em>You don't have to specify two dates.</em>
+		</p>
+
+		
+		<hr>
+		<h3 id="scheduled"><strong>F) Scheduled orders export</strong> - <a href="#toc">top</a></h3>
+		
+		<p>On the top of the page, you have the list of the currently scheduled export. You may remove them.</p>
+		
+		<figure>
+		  <img src="assets/images/scheduled-list.png" alt="scheduled export list" />
+		  <figcaption>Scheduled export list</figcaption>
+		</figure>
+		
+		
+		<p>Under the table, there is the form to add new scheduled exports.</p>
+		
+		
+		<p>First, choose the recurrence. The recurrences availables are the ones already defined in your WordPress. (See <a href="notes">See Note for developpers</a> to add new ones)</p>
+		
+		<p>Fill the emails recipients (if more than one, separate with a coma), and the subject of the email. You may also fill a text to add in the sent email. You may also change the columns and line separator if you need.</p>
+		
+		<p>Then click on "Save". A first email is sent, with all the orders until now. When the time interval is ellapsed, a new mail will be send with the new orders since last email.</p>
+		
+		
+
+		<figure>
+		  <img src="assets/images/scheduled-data.png" alt="schedule data" />
+		  <figcaption>Schedule data</figcaption>
+		</figure>
+		
+		<h4><strong>Important notes</strong></h4>
+		<ul>
+			<li><strong>If there is no new orders since last email, no email will be send.</strong></li>
+			<li><strong>The scheduled events rely on WP crons. This ones are triggered by visitors coming on your site. In case of low traffic websites, emails can be postpone.</strong></li>
+			
+			<li><strong>If you deactivated the WP crons with DISABLE_WP_CRON in you config.php file, make sure you call the URL /wp-cron.php?doing_wp_cron regularly.</strong></li>
+		</ul>
+		
+		<hr>
+		<h3 id="storage"><strong>G) Storage & Security</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This plugin is not storing any data in your WordPress database. For security reasons, the plugin & the export option is only available for administrators.</p>
+		
+		<p>When the plugin is deactivated, all the cron are removed</p>
+		
+		<hr>
+		
+		<h3 id="ki"><strong>H) Known issues</strong> - <a href="#toc">top</a></h3>
+		
+		<ul>
+
+			<li>WooCommerce Quick Export Plugin takes advantage of the new "Date Query" introduced with WordPress 3.7. You <strong>need</strong> to upgrade WordPress if you want to use the plugin.</li>
+			<li>WooCommerce Quick Export Plugin exported data (csv files) have been tested with a lot of differents configurations (OS and Tools). You should be able to open and read it with the defaults CSV files options. If you don't have any software capable of reading CSV files you can use Google Drive. It's online and free.</li>
+			<li>If you have trouble exporting data, try diffents settings to limit the script duration. For example, you can reduce date range and/or exclude sales data when dealing with customers.</li>
+
+		</ul>
+		<hr>
+		<h3 id="nd"><strong>I) Notes for developpers</strong> - <a href="#toc">top</a></h3>
+		
+		<h5>a) Availables filters</h5>
+
+		<p>Several filters are availables for developpers to manipulate default behaviour of the plugin :</p>
+		<ul>
+		
+			<li>wqep_included_user_identity_keys_filter (an array of keys used against the customer object). These fields will be used and included in your csv files when "User identity" is checked in the Customer Export Screen</li>
+			<li>wqep_included_billing_information_keys_filter (an array of keys used against the customer object). These fields will be used and included in your csv files when "Billing Informations" is checked in the Customer Export Screen</li>
+			<li>wqep_included_shipping_information_keys_filter (an array of keys used against the customer object). These fields will be used and included in your csv files when "Shipping Informations" is checked in the Customer Export Screen</li>
+			<li>wqep_status_for_user_activity_filter (an array of order_status used when calculating user activity in the export users panel). Default is array('completed').</li>
+			
+			
+			<li>wqep_included_order_keys_filter (an array of keys used against the order object). These fields will be used and included in your csv files when you are exporting orders</li>
+			
+			<li>wqep_included_order_product_keys_filter : additionnal postmeta value of the product to get for each product. Default : empty array.</li>
+			
+			<li>wqep_included_order_default_product_keys_filter : array af the data retrieved for each product. Default : array('sku', 'name', 'quantity', 'line_price_without_taxes', 'line_price_with_taxes').</li>
+			
+			<li>wqep_caps : the ability required to do the export. Default : 'administrator'</li>
+		</ul>
+
+		<h5>b) Usage</h5>
+		
+		<p><strong>Adding a custom field to the orders export (field added by a plugin for instance) :</strong></p>
+
+<pre>
+// functions.php
+
+function wqep_included_order_keys_filter_custom($keys){
+        
+		    array_push($keys, '_follow_colissimo');
+		    return $keys;
+
+}
+
+add_filter( 'wqep_included_order_keys_filter', 'wqep_included_order_keys_filter_custom' );
+
+</pre>
+
+<p><strong>Removing billing_company from the customer export files.</strong></p>
+
+<pre>
+// functions.php
+
+function wqep_included_billing_information_keys_filter_custom($keys){
+	
+	unset($key['billing_company'])
+    return $key;
+
+}
+
+add_filter( 'wqep_included_billing_information_keys_filter', 'wqep_included_billing_information_keys_filter_custom' );
+
+</pre>
+
+
+<p><strong>Adding a product post meta to the order export.</strong> (In this exemple, add the dimensions information)</p>
+
+<pre>
+// functions.php
+
+function custom_product_meta($array)
+{
+	$array[] = '_length';
+	$array[] = '_width';
+	$array[] = '_height';
+	
+	return $array;
+}
+add_filter('wqep_included_order_product_keys_filter', 'custom_product_meta');
+
+</pre>
+
+
+<p><strong>Default product data : keep just name and quantity</strong></p>
+
+<pre>
+// functions.php
+
+function my_order_default_product_keys_filter($key)
+{
+	return array('name', 'quantity');
+}
+add_filter('wqep_included_order_default_product_keys_filter', 'my_order_default_product_keys_filter');
+
+</pre>
+
+<p><strong>Adding a column with fistname and lastname in the same column.</strong></p>
+
+<pre>
+// functions.php
+
+function add_complete_name($keys){
+	array_push($keys, 'billing_complete_name');
+	array_push($keys, 'shipping_complete_name');
+	return $keys;
+}
+
+add_filter( 'wqep_included_order_keys_filter', 'add_complete_name' );
+
+</pre>
+
+
+<p><strong>Adding a custom time interval</strong> (See http://codex.wordpress.org/Plugin_API/Filter_Reference/cron_schedules)</p>
+
+<pre>
+// functions.php
+
+function my_add_weekly( $schedules ) {
+	// add a 'weekly' schedule to the existing set
+	$schedules['weekly'] = array(
+		'interval' => 604800, //interval of one week in seconds
+		'display' => __('Once Weekly') //name of the interval
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'my_add_weekly' ); 
+
+</pre>
+
+
+		<p class="append-bottom alt large"><strong>Benoit Mercusot</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

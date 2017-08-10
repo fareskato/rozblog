@@ -1,0 +1,93 @@
+v2.2
+– Memory improvement at loading
+
+v2.1.5
+- Add a filter on scheduled settings
+
+v2.1.4
+- New filter qwep_data_to_repeat
+– Remove line breaks in the order note
+– Filters to translate column names
+– Support of multiple shipping address
+
+v2.1.3
+– Show order item meta in the help tab
+– Allow serialized data to be exported via filter
+– Allow total custom filter for product
+– Update notification in back-end
+
+v2.1.2
+- improve memory usage in panel display, that caused some blank screens
+
+v2.1.1
+- WC 2.2 : correct display of the order status
+- Filter on the customer role : http://pastebin.com/NgWCVSDi 
+
+v2.1
+- Support of WooCommerce 2.2
+
+v2.0.3
+- Handling safe mode
+- Adding a filter to handle custom column data
+- Adding utf-16 Excel support including Chinese
+- Fixing a bug in automated export (export parameters were ignored)
+
+v2.0.2
+- Adding coupon description 
+- Handeling order item meta
+- Adding list of meta useable in filters in help panel
+
+v2.0.1
+- Correcting a major bug in coupon export
+
+v2.0
+- New feature (major) : scheduled exports
+- New feature (major) : adding coupon usage export
+- New feature (minor) : checkbox to export a product by line
+- Several bug fixes / improvements : 
+    - removing deprecated mysql_real_escape_string
+    - correcting a bug on quote escaping
+    - adding line price (with and without taxes)
+    - correcting hook detection for javascript
+    - add filters on products default attributes
+    - use filters on default columns which couldn't be removed
+    - adding a key to export firstname and lastname in the same column
+
+
+v1.4.1.2
+- Bug fix for shipping method title which was empty since WooCommerce 2.1
+
+v1.4.1.1
+- Bug fix for tax column when no taxes
+
+
+v1.4.1
+- Better support for separator field (support separators like tabulation (\t))
+
+v1.4
+- Order export : adding shipping country and customer note by default
+- Order export : adding a filter to add product's post_metas to detail of each product
+
+Example :
+
+function custom_product_meta($array)
+{
+	$array[] = '_length';
+	$array[] = '_width';
+	$array[] = '_height';
+	
+	return $array;
+}
+add_filter('wqep_included_order_product_keys_filter', 'custom_product_meta');
+	
+- Fixes to support woocommerce 2.1.
+
+v1.3
+- Order export now export the sum of taxes grouped by different taxes names (if applicable)
+- Fixing html entities not well displaying
+
+v1.2
+- Order export now includes coupons names and coupons amount used in each order.
+
+v1.1
+- Order export now includes SKU, ITEM TITLE, ITEM QUANTITY

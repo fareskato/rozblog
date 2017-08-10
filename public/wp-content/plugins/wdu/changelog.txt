@@ -1,0 +1,11 @@
+Changelog
+-------------
+
+0.1
+- Initial release
+
+0.2
+- Allow \t as a delimiter
+
+0.3
+- Ability to skip individual products from the WC Products page
